@@ -1,4 +1,5 @@
 number = 1
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 while number <= 10
   puts number
@@ -12,8 +13,8 @@ until number > 10
   number += 1
 end
 
-for num in 1..10
+for num in arr
   puts num
 end
 
-(1..10).each { |num| puts num }
+arr.each { |num| puts num }

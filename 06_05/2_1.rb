@@ -12,11 +12,3 @@ until index == word.length
   puts word[index].upcase
   index += 1
 end
-
-split_word = word.split('')
-
-for letter in split_word
-  puts letter.upcase
-end
-
-split_word.each { |letter| puts letter.upcase}

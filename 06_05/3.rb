@@ -1,4 +1,4 @@
-array = (1..10).to_a
+array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 index = 0
 
 while index < array.size
@@ -35,10 +35,3 @@ until index == word.size
   index += 1
 end
 
-split_word = word.split('')
-
-for element in split_word
-  puts "#{element} -> #{split_word.index(element)}"
-end
-
-split_word.each { |num| puts "#{num} -> #{split_word.index(num)}"}

@@ -13,12 +13,3 @@ end
 def arr_last(arr)
   arr[-1]
 end
-
-string = "Terminator"
-arr = string.split('')
-
-puts string_first(string)
-puts string_last(string)
-
-puts arr_first(arr)
-puts arr_last(arr)

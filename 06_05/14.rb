@@ -21,7 +21,7 @@ index = 0
 until index == arr.size
   count = 0
 
-  while count <= index
+  until count > index
     print "#{arr[count]} "
     count += 1
   end

@@ -6,4 +6,12 @@ def sum(array)
   sum
 end
 
-puts sum([1, 12, 14])
+def sum(array)
+  sum = 0
+  index = 0
+  while index < array.length
+    sum += array[index]
+    index += 1
+  end
+  sum
+end

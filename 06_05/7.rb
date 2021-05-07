@@ -1,20 +1,20 @@
-range = (1..9).to_a
+array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 index = 0
 
-while index < range.size
-  puts "#{range[index]} x 3 = #{range[index] * 3}"
+while index < array.size
+  puts "#{array[index]} x 3 = #{array[index] * 3}"
   index += 1
 end
 
 index = 0
 
-until index == range.size
-  puts "#{range[index]} x 3 = #{range[index] * 3}"
+until index == array.size
+  puts "#{array[index]} x 3 = #{array[index] * 3}"
   index += 1
 end
 
-for num in range
+for num in array
   puts "#{num} x 3 = #{num * 3}"
 end
 
-range.each { |num| puts "#{num} x 3 = #{num * 3}" }
+array.each { |num| puts "#{num} x 3 = #{num * 3}" }

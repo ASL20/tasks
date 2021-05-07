@@ -1,26 +1,36 @@
-puts 'Введите слово'
-input = STDIN.gets.chomp
+require 'minitest/autorun'
 
-index = 0
-count = -1
-new_word = ""
-
-while index < input.size
-  new_word += input[count]
-  index += 1
-  count -= 1
+def string_reverse(string)
+  index = 0
+  count = -1
+  new_string = ""
+  while index < string.length
+    new_string << string[count]
+    index += 1
+    count -= 1
+  end
+  new_string
 end
 
-puts new_word
-
-index = 0
-count = -1
-new_word = ""
-
-until index >= input.size
-  new_word += input[count]
-  index += 1
-  count -= 1
+class Test < Minitest::Test
+  def test_integer
+    input = 56
+    assert_raises(NoMethodError) { string_reverse(input) }
+  end
+  def test_correct_array
+    input = %w[ с л о в о ]
+    assert_equal("оволс", string_reverse(input))
+  end
+  def test_correct_string
+    input = "слово"
+    assert_equal("оволс", string_reverse(input))
+  end
+  def test_blank_array
+    input = []
+    assert_equal("", string_reverse(input))
+  end
+  def test_blank_string
+    input = ""
+    assert_equal("", string_reverse(input))
+  end
 end
-
-puts new_word

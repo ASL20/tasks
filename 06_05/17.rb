@@ -1,3 +1,5 @@
+require 'minitest/autorun'
+
 def look_matches(array, input)
   result = []
   array.each do |word|
@@ -11,9 +13,21 @@ def look_matches(array, input)
   end
 end
 
-arr = %w{ apple banana qiwi baseball antanta query queue balls alladin }
+class Test < Minitest::Test
+  def test_correct_input
+    arr = ['apple', 'banana', 'age', 'house', 'horse', 'book']
+    input = 'a'
+    assert_equal(['apple', 'age'], look_matches(arr, input))
+  end
 
-puts 'Введите букву'
-input = STDIN.gets.strip.downcase
+  def test_uncorrect_input
+    arr = ['apple', 'banana', 'age', 'house', 'horse', 'book']
+    input = 1
+    assert_equal('Слов начинающихся на эту букву нет', look_matches(arr, input))
+  end
 
-puts look_matches(arr, input)
+  def test_blank_array
+    input = 'a'
+    assert_equal('Слов начинающихся на эту букву нет', look_matches([], input))
+  end
+end

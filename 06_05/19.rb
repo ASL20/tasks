@@ -1,20 +1,36 @@
-puts "Введите строку, для проверки на палиндромность:"
-input = gets.chomp
+require 'minitest/autorun'
 
-original_word = input.downcase.chomp
+def palindrome?(word)
+  word = word.downcase.chomp
 
-index = 0
-count = -1
-new_word = ""
+  index = 0
+  count = -1
+  result = ""
 
-while index < original_word.size
-  new_word += original_word[count]
-  index += 1
-  count -= 1
+  while index < word.size
+    result += word[count]
+    index += 1
+    count -= 1
+  end
+
+  if result == word
+    'Это палиндром'
+  else
+    'Это не палиндром'
+  end
 end
 
-if new_word == original_word
-  puts('Это палиндром')
-else
-  puts('Это не палиндром')
+class Test < Minitest::Test
+  def test_palindrome
+    input = "мадам"
+    assert_equal("Это палиндром", palindrome?(input))
+  end
+  def test_not_palindrome
+    input = "мадемуазель"
+    assert_equal("Это не палиндром", palindrome?(input))
+  end
+  def test_wrong_input
+    input = 515
+    assert_raises(NoMethodError) { palindrome?(input) }
+  end
 end

@@ -1,45 +1,28 @@
-number = 5
-index = 1
+require 'minitest/autorun'
 
-while index <= number
-  print " " * (number - index)
-  puts "* " * index
-  index += 1
+def stars_while(quantity)
+  index = 1
+  result = []
+  while index <= quantity
+    result << "#{' ' * (quantity - index)}#{'* ' * index}"
+    index += 1
+  end
+  result
 end
 
-arr = [1, 2, 3, 4, 5]
-
-index = 1
-
-arr.each do |num|
-  print " " * ((arr[-num]) - 1)
-  puts "* " * index
-  index += 1
-end
-
-index = 0
-
-while index < arr.size
-  count = 0
-  print " " * (arr.size - 1 - index)
-  while count <= index
-    print "#{arr[count]} "
+def stars_each(quantity)
+  count = 1
+  arr = []
+  while count <= quantity
+    arr << count
     count += 1
   end
-  puts
 
-  index += 1
-end
-
-index = 0
-
-arr.each do |num|
-  count = 0
-  print " " * ((arr[-num]) - 1)
-  while count <= index
-    print "#{arr[count]} "
-    count += 1
+  index = 1
+  result = []
+  arr.each do |num|
+    result << "#{" " * ((arr[-num]) - 1)}#{"* " * index}"
+    index += 1
   end
-  puts
-  index += 1
+  result
 end

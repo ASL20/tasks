@@ -33,12 +33,12 @@ while user_input == 'y'
     end
   end
 
-  if user_score == computer_score
-    puts 'Итог: Ничья'
+  if user_score < computer_score
+    puts 'Итог: Победил компьютер'
   elsif user_score > computer_score
     puts 'Итог: Победил игрок'
   else
-    puts 'Итог: Победил компьютер'
+    puts 'Итог: Ничья'
   end
 
   puts 'Хотите сыграть ещё или завершить игру?(y/n)'
@@ -46,7 +46,7 @@ while user_input == 'y'
 
   if user_input == 'n'
     break
-  elsif user_input == 'y'
-    attemtps = 0
+  else
+    attempts = 0
   end
 end

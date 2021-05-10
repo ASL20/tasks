@@ -4,14 +4,19 @@ require 'minitest/autorun'
 def bomb_text(number)
   return unless number.is_a?(Integer)
 
-  result = []
+  array = []
   while number > 0
-    if number == 4
-      result << "#{number}\nСейчас рванет!!!"
-    else
-      result << number
-    end
+    array << number
     number -= 1
+  end
+
+  result = []
+  array.each do |num|
+    if num == 4
+      result << "#{num}\nСейчас рванет!!!"
+    else
+      result << num
+    end
   end
   result << '!!!BOOM!!!'
 end
@@ -22,7 +27,6 @@ def bomb_print(text)
     sleep 1
   end
 end
-
 
 class Test < Minitest::Test
   def test_bomb_text_correct_work

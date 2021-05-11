@@ -3,11 +3,11 @@ require 'minitest/autorun'
 def start_with_while?(param, word)
   index = 0
   while index < param.length
-    result =
-      if param[index].downcase == word[index].downcase
-        true
+      if param[index] == word[index]
+        result = true
       else
-        false
+        result = false
+        break
       end
     index += 1
   end
@@ -26,10 +26,11 @@ def start_with_each?(param, word)
   result = nil
   param_arr.each do |letter|
     result =
-      if letter.downcase == word[index].downcase
-        true
+      if param[index] == word[index]
+        result = true
       else
-        false
+        result = false
+        break
       end
     index += 1
   end
@@ -42,7 +43,7 @@ class Test < Minitest::Test
   end
 
   def test_start_with_while_not_matches
-    assert_equal(false, start_with_while?('subl', 'suburban'))
+    assert_equal(false, start_with_while?('stb', 'suburban'))
   end
 
   def test_start_with_while_wrong_input
@@ -54,7 +55,7 @@ class Test < Minitest::Test
   end
 
   def test_start_with_each_not_matches
-    assert_equal(false, start_with_each?('subl', 'suburban'))
+    assert_equal(false, start_with_each?('stbl', 'suburban'))
   end
 
   def test_start_with_each_wrong_input

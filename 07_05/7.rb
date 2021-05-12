@@ -9,7 +9,7 @@ def count(array, object)
     counter += 1 if array[index] == object
     index += 1
   end
-  counter if counter > 0
+  counter
 end
 
 class Test < Minitest::Test
@@ -20,7 +20,7 @@ class Test < Minitest::Test
 
   def test_count_there_is_not_match
     array = [1, 2, 3, 2, 2, 4]
-    assert_nil(count(array, 5))
+    assert_equal(0, count(array, 5))
   end
 
   def test_count_wrong_array

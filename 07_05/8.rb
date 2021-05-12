@@ -4,13 +4,11 @@ def index(array, object)
   return unless array.is_a?(Array)
 
   index = 0
-  result = nil
   while index < array.length
-    result = index if object == array[index]
-    break if result == index
+    return index if object == array[index]
     index += 1
   end
-  result
+  nil
 end
 
 class Test < Minitest::Test

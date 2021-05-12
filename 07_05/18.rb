@@ -4,24 +4,22 @@ require 'minitest/autorun'
 def subtract_arrays(arr1, arr2)
   return unless arr1.is_a?(Array) || arr2.is_a?(Array)
   return arr1 if arr1.length == 0
-  result = []
-  result[0] = arr1
-  arr2.each do |s|
+
+  result = arr1
+  arr2.each do |param|
     tmp = []
-    index = 0
-    n = 0
-    result[index].each do |f|
-      if n == 0
-        tmp << f if f != s
+    blocked = true
+    result.each do |element|
+      if blocked
+        tmp << element if element != param
       else
-        tmp << f
+        tmp << element
       end
-      n += 1 if f == s
+      blocked = false if element == param
     end
-    result[index] = tmp
-    index += 1
+    result = tmp
   end
-  result.last
+  result
 end
 
 class Test < Minitest::Test

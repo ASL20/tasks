@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 
 def filter(array, operator, object)
-  return unless array.is_a?(Array) || (array.is_a?(Array) && array.any?) || (operator == '<' || operator == '>')
+  return unless (array.is_a?(Array) && array.any?) || (operator == '<' || operator == '>')
 
   result = []
   array.each do |n|

@@ -3,8 +3,8 @@ require 'minitest/autorun'
 def max_2(array)
   return if array.length == 0
 
-  max1 = 0
-  max2 = 0
+  max1 = -Float::INFINITY
+  max2 = -Float::INFINITY
 
   index = 0
   previous_value = 0

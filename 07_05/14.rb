@@ -1,11 +1,10 @@
 require 'minitest/autorun'
 
 def include?(array, object)
-  result = false
   array.each do |el|
-    result = true if el == object
+    return true if el == object
   end
-  result
+  false
 end
 
 

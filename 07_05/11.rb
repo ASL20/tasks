@@ -49,7 +49,7 @@ end
 
 def month_of_year(month, number)
   months = %w[январь февраль март апрель май июнь июль август сентябрь октябрь ноябрь декабрь]
-  week = %w[ понедельник вторник среда четверг пятница суббота воскресенье ]
+  week = %w[понедельник вторник среда четверг пятница суббота воскресенье]
   days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   first_day = 'пятница'
 
@@ -90,8 +90,6 @@ def month_of_year(month, number)
   end
   required_day
 end
-
-puts month_of_year('май', 10)
 
 class Test < Minitest::Test
   def test_make_month_correct_work

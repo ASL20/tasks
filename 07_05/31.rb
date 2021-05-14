@@ -3,32 +3,17 @@ require 'minitest/autorun'
 def zip(arr1, arr2)
   return unless arr1.is_a?(Array) || arr2.is_a?(Array)
 
-  result = []
-  if arr1.length > arr2.length
-    arr1.each_with_index do |n, index|
-      tmp = []
-      tmp << n
-      if arr2[index]
-        tmp << arr2[index]
-      else
-        tmp << :empty
-      end
-      result << tmp
+  arr =
+    arr1.length > arr2.length ? arr1 : arr2
+
+  result =
+    arr.map.with_index do |n, index|
+      [
+        arr1[index] || :empty,
+        arr2[index] || :empty
+      ]
     end
-    result
-  else
-    arr2.each_with_index do |n, index|
-      tmp = []
-      if arr1[index]
-        tmp << arr1[index]
-      else
-        tmp << :empty
-      end
-      tmp << n
-      result << tmp
-    end
-    result
-  end
+  result
 end
 
 class Test < Minitest::Test

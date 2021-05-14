@@ -3,23 +3,17 @@ require 'minitest/autorun'
 def zip(arr1, arr2, arr3)
   return unless arr1.is_a?(Array) || arr2.is_a?(Array) || arr3.is_a?(Array)
 
-  result = []
+  arr = arr1.length > arr2.length ? arr1 : arr2
+  max_arr = arr3.length > arr.length ? arr3 : arr
 
-  arr1.each_with_index do |n, index|
-    tmp = []
-    tmp << n
-    if arr2[index]
-      tmp << arr2[index]
-    else
-      tmp << :empty
+  result =
+    max_arr.map.with_index do |n, index|
+      [
+        arr1[index] || :empty,
+        arr2[index] || :empty,
+        arr3[index] || :empty
+      ]
     end
-    if arr3[index]
-      tmp << arr3[index]
-    else
-      tmp << :empty
-    end
-    result << tmp
-  end
   result
 end
 
@@ -37,6 +31,9 @@ class Test < Minitest::Test
   end
 
   def test_zip_b_and_c_more_a
-    assert_equal([[1, 'a', 'e'], [2, 'b', 'f'], [3, 'c', 'g']], zip([1, 2, 3], ['a', 'b', 'c', 'd'], ['e', 'f', 'g', 'h']))
+    assert_equal(
+      [[1, 'a', 'e'], [2, 'b', 'f'], [3, 'c', 'g'], [:empty, 'd', 'h']],
+      zip([1, 2, 3], ['a', 'b', 'c', 'd'], ['e', 'f', 'g', 'h'])
+    )
   end
 end

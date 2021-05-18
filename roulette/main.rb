@@ -236,14 +236,17 @@ while status || player1_balance > 10
     print_move_result(player2_result, player2_choice, player2_bet_value, 'player2') if player2_input == 1
     print_pc_move_result(pc_result, pc_choice, pc_bet_value) if pc_status && game_selection == 2
 
+    # в случае выигрыша выводим сообщение и сумму
     puts "Выигрыш 1 игрока составляет #{calculate_balance(player1_bet_value, player1_result, player1_choice)}" if player1_result
     puts "Выигрыш 2 игрока составляет #{calculate_balance(player2_bet_value, player2_result, player2_choice)}" if player2_result && player2_input == 1
     puts "Выигрыш ПК составляет #{calculate_balance(pc_bet_value, pc_result, pc_choice)}" if pc_result && pc_status && game_selection == 2
 
+    # меняем состояние баланса в зависимости от результата ставок
     player1_balance += calculate_balance(player1_bet_value, player1_result, player1_choice)
     player2_balance += calculate_balance(player2_bet_value, player2_result, player2_choice) if player2_input == 1
     pc_balance += calculate_balance(pc_bet_value, pc_result, pc_choice) if pc_status && game_selection == 2
 
+    # выводим текущий баланс игроков
     puts "Баланс 1 игрока #{player1_balance}"
     puts "Баланс 2 игрока #{player2_balance}" if game_selection == 3
     puts "Баланс ПК #{pc_balance}" if pc_status && game_selection == 2

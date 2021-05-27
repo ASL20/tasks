@@ -3,8 +3,8 @@ require 'minitest/autorun'
 def move_zeroes(arr)
   tmp_value = 0
   arr.each_with_index do |n, index|
-    if n == 0 && arr[index + 1] != 0
-      i = -1
+    i = -1
+    if n == 0
       while i >= -arr.length
         if arr[i] != 0
           tmp_value = arr[i]
@@ -22,6 +22,6 @@ end
 
 class Test < Minitest::Test
   def test_move_zeroez_correct_work
-    assert_equal([2, 5, 7, 8, 4, -5, 7, 0, 0, 0], move_zeroes([2, 5, 7, 0, 4, 0, 7, -5, 8, 0]))
+    assert_equal([0, 2, 5, 7, 8, 4, -5, 7, 0, 0, 0], move_zeroes([0, 2, 5, 7, 0, 4, 0, 7, -5, 8, 0]))
   end
 end

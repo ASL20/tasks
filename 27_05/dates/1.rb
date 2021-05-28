@@ -1,14 +1,21 @@
-puts 'Введите дату своего рождения'
-user_input = STDIN.gets.to_i
+require 'date'
 
-if user_input.between?(00, 21)
-  date = "20#{user_input}".to_i
-elsif user_input.between?(22, 99)
-  date = "19#{user_input}".to_i
-else
-  date = user_input
+user_input = -1
+
+while user_input < 0 || user_input > 2021
+  puts 'Введите год своего рождения'
+  user_input = STDIN.gets.to_i
 end
 
-current_date = Time.now.year
+date =
+  if user_input.between?(00, 21)
+    "20#{user_input}".to_i
+  elsif user_input.between?(22, 99)
+    "19#{user_input}".to_i
+  else
+    user_input
+  end
 
-puts "Ваш возраст составляет #{current_date - date}"
+current_date = Date.parse('20210528')
+
+puts "Ваш возраст составляет #{current_date.year - date}"

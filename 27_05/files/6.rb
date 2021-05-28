@@ -15,7 +15,10 @@ class File
 
   def self.my_readlines(file_name)
     f = self.new(file_name, 'r')
-    result = yield f
+    result = []
+    f.each do |string|
+      result << string
+    end
     f.close
     result
   end

@@ -5,21 +5,35 @@ require_relative 'rps'
 
 player1 = Player.new('Игрок 1', Array.new(8, Checker.new(player1, "\u26C2")))
 player2 = Player.new('Игрок 2', Array.new(8, Checker.new(player2, "\u26C0")))
+puts "Хотите начать новую игру или загрузить старую?(new/old)"
+game_input = STDIN.gets.strip
+
 board = Board.new(player1, player2)
 
+case game_input
+when 'new'
+  0
+when 'old'
+  counter = board.load_game
+end
+
 board.print_body
-counter = 0
 log = File.new('log.txt', 'a')
 
 loop do
   player_move = false
   enemy_checker_coordinates = false
   current_player = board.select_current_player(counter)
+  unactive_player = board.select_current_player(counter + 1)
 
   until player_move
     puts board.suggest_input(current_player)
 
     player_input = STDIN.gets.strip
+    if player_input == 'save'
+      board.save_game(counter)
+    end
+
     player_coordinates = board.get_coordinates(player_input)
     checked_move = board.check_move(player_coordinates, current_player)
     player_pre_coordinates = player_coordinates.first
@@ -37,6 +51,7 @@ loop do
       board.make_move(player_pre_coordinates, player_new_coordinates)
       board.update_board(player_pre_coordinates)
       board.update_board(enemy_checker_coordinates)
+      board.reduce_checkers(unactive_player)
       player_move = true
     else
       puts 'Неправильный ход'

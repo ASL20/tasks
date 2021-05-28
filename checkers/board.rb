@@ -17,8 +17,47 @@ class Board
     @player2 = player2
   end
 
+  def save_game(counter)
+    file = File.open('saved_game.txt', 'w') do |f|
+      f.puts counter
+      f.puts @player1.checkers_number
+      f.puts @player2.checkers_number
+      @body.each do |row|
+        row.each do |cage|
+          cage.is_a?(Checker) ? f.print "#{cage.color} " : f.print "#{cage} "
+        end
+        f.puts
+      end
+    end
+    abort 'Игра успешно сохранена'
+  end
+
+  def load_game
+    file = File.open('saved_game.txt', 'r') { |f| f.readlines(chomp: true) }
+    saved_game = []
+    file.each_with_index do |row, index|
+      if index > 2
+        saved_game << row.split(' ').map do |cage|
+                        cage =
+                          case cage
+                          when "\u26C2"
+                            Checker.new(@player1, "\u26C2")
+                          when "\u26C0"
+                            Checker.new(@player2, "\u26C0")
+                          else
+                            cage
+                          end
+                      end
+      end
+    end
+    @body = saved_game
+    @player1.checkers_number = file[1].to_i
+    @player2.checkers_number = file[2].to_i
+    file.first.to_i
+  end
+
   def write_log(file, player, move, counter)
-    file.puts "#{counter + 1}: #{player.name} сделал ход #{move}"
+    file.puts "#{counter + 1}: #{player.name} сделал ход #{move}. Количество шашек - #{player.checkers_number}"
   end
 
   def suggest_input(player)
@@ -31,11 +70,14 @@ class Board
       if result == [1, 0]
         if player == @player1
           update_board([new_coordinates.first, new_coordinates.last + 1])
+          reduce_checkers(@player2)
         else
           update_board([new_coordinates.first, new_coordinates.last - 1])
+          reduce_checkers(@player1)
         end
       else
         update_board([new_coordinates.first, new_coordinates.last])
+        reduce_checkers(player)
       end
       sleep 1
       print_body
@@ -44,6 +86,10 @@ class Board
 
   def select_current_player(counter)
     counter % 2 == 0 ? @player1 : @player2
+  end
+
+  def reduce_checkers(player)
+    player.checkers_number -= 1
   end
 
   def select_winner(player)
